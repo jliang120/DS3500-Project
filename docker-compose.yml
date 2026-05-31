@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  dashboard:
+    build: .
+    ports:
+      - "5006:5006"
+    environment:
+      - FRED_API_KEY=${FRED_API_KEY}
+      - CENSUS_API_KEY=${CENSUS_API_KEY}
+    volumes:
+      - ./data_processing/data_storage:/app/data_processing/data_storage
+      - ./data_acquisition/data_storage:/app/data_acquisition/data_storage
+    restart: unless-stopped
